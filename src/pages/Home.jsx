@@ -16,19 +16,23 @@ function Home() {
     let isMounted = true;
 
     // Lazy load anime.js only on homepage mount
-    import('animejs').then(({ createTimeline, stagger }) => {
+    import('animejs').then(({ createTimeline, stagger, utils }) => {
       if (!isMounted || !heroRef.current) return;
 
       const tl = createTimeline({
         defaults: {
           ease: 'outQuad',
         },
+        onComplete: (self) => {
+          if (utils?.cleanInlineStyles) {
+            utils.cleanInlineStyles(self);
+          }
+        },
       });
 
-      // 1. Campaign photo entrance: scale & fade in
+      // 1. Campaign photo entrance: fade in
       tl.add(`.${styles.campaignImg}`, {
         opacity: [0, 1],
-        scale: [1.12, 1.25],
         duration: 900,
       });
 
@@ -96,11 +100,13 @@ function Home() {
 
           {/* Center: Campaign Image */}
           <div className={styles.heroImage}>
-            <img
-              src={heroImage}
-              alt="NEMESIS Y2K Streetwear Campaign"
-              className={styles.campaignImg}
-            />
+            <div className={styles.campaignImgWrapper}>
+              <img
+                src={heroImage}
+                alt="NEMESIS Y2K Streetwear Campaign"
+                className={styles.campaignImg}
+              />
+            </div>
           </div>
 
           {/* Column 5: NEMESIS + Subtext */}
