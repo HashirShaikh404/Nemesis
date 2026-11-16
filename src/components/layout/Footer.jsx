@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 function Footer() {
@@ -14,10 +15,18 @@ function Footer() {
         <div className={styles.column}>
           <h3 className={styles.columnTitle}>SHOP</h3>
           <ul className={styles.linkList}>
-            <li>New Arrivals</li>
-            <li>Tops</li>
-            <li>Bottoms</li>
-            <li>Accessories</li>
+            <li>
+              <Link to="/shop?category=mens-shirts">Mens Shirts</Link>
+            </li>
+            <li>
+              <Link to="/shop?category=womens-dresses">Womens Dresses</Link>
+            </li>
+            <li>
+              <Link to="/shop?category=mens-shoes">Footwear</Link>
+            </li>
+            <li>
+              <Link to="/shop?category=sunglasses">Accessories</Link>
+            </li>
           </ul>
         </div>
 
@@ -25,10 +34,18 @@ function Footer() {
         <div className={styles.column}>
           <h3 className={styles.columnTitle}>HELP</h3>
           <ul className={styles.linkList}>
-            <li>Contact</li>
-            <li>FAQ</li>
-            <li>Shipping</li>
-            <li>Returns</li>
+            <li>
+              <Link to="/shop">Store Catalog</Link>
+            </li>
+            <li>
+              <Link to="/cart">Shopping Bag</Link>
+            </li>
+            <li>
+              <Link to="/checkout">Express Checkout</Link>
+            </li>
+            <li>
+              <span style={{ cursor: 'default' }}>24/7 Client Support</span>
+            </li>
           </ul>
         </div>
 
@@ -36,9 +53,21 @@ function Footer() {
         <div className={styles.column}>
           <h3 className={styles.columnTitle}>FOLLOW</h3>
           <ul className={styles.linkList}>
-            <li>Instagram</li>
-            <li>Twitter</li>
-            <li>TikTok</li>
+            <li>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                Twitter / X
+              </a>
+            </li>
+            <li>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
+                TikTok
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -46,7 +75,7 @@ function Footer() {
       {/* Bottom Bar */}
       <div className={styles.bottomBar}>
         <p className={styles.copyright}>
-          &copy; {new Date().getFullYear()} NEMESIS. All rights reserved.
+          &copy; {new Date().getFullYear()} NEMESIS STREETWEAR. ALL RIGHTS RESERVED.
         </p>
       </div>
     </footer>

@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')).render(
       <CartProvider>
         <App />
         <Toaster
-          position="top-right"
+          position="bottom-right"
           toastOptions={{
             duration: 3000,
             style: {
@@ -21,6 +21,7 @@ createRoot(document.getElementById('root')).render(
               fontFamily: "'Inter', sans-serif",
               fontSize: '14px',
               borderRadius: '4px',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
             },
           }}
         />

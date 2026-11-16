@@ -203,16 +203,16 @@ function Home() {
               <span className={styles.cardIndex}>004</span>
             </div>
             <div className={styles.silhouetteGrid}>
-              <Link to="/shop?category=men's clothing" className={styles.silhouettePill}>
-                <span className={styles.pillLabel}>OUTERWEAR & HOODIES</span>
+              <Link to="/shop?category=mens-shirts" className={styles.silhouettePill}>
+                <span className={styles.pillLabel}>OUTERWEAR & SHIRTS</span>
                 <ArrowRight size={16} />
               </Link>
-              <Link to="/shop?category=women's clothing" className={styles.silhouettePill}>
-                <span className={styles.pillLabel}>OVERSIZED TEES & BOTTOMS</span>
+              <Link to="/shop?category=womens-dresses" className={styles.silhouettePill}>
+                <span className={styles.pillLabel}>OVERSIZED & DRESSES</span>
                 <ArrowRight size={16} />
               </Link>
-              <Link to="/shop?category=jewelery" className={styles.silhouettePill}>
-                <span className={styles.pillLabel}>CYBER CHAINS & ACCS</span>
+              <Link to="/shop?category=sunglasses" className={styles.silhouettePill}>
+                <span className={styles.pillLabel}>CYBER EYEWEAR & ACCS</span>
                 <ArrowRight size={16} />
               </Link>
             </div>
