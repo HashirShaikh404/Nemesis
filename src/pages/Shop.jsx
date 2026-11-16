@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Link, useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Search, Plus } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { getAllProducts, getCategories } from '../services/productService.js';
@@ -24,18 +24,9 @@ function Shop() {
 
   const { addToCart } = useCart();
 
-  // Sync state if URL query param or category changes
-  useEffect(() => {
-    if (urlQuery !== undefined) {
-      setSearchQuery(urlQuery);
-    }
-  }, [urlQuery]);
-
-  useEffect(() => {
-    if (urlCategory) {
-      setSelectedCategory(urlCategory);
-    }
-  }, [urlCategory]);
+  // Keep search and category state in sync with URL parameters
+  const activeCategory = urlCategory !== 'all' ? urlCategory : selectedCategory;
+  const activeSearch = urlQuery || searchQuery;
 
   // Fetch products and categories when the shop page mounts
   useEffect(() => {
@@ -72,15 +63,15 @@ function Shop() {
     let result = [...products];
 
     // 1. Filter by category
-    if (selectedCategory !== 'all') {
+    if (activeCategory !== 'all') {
       result = result.filter(
-        (p) => p.category?.toLowerCase() === selectedCategory.toLowerCase()
+        (p) => p.category?.toLowerCase() === activeCategory.toLowerCase()
       );
     }
 
     // 2. Filter by search input
-    if (searchQuery.trim()) {
-      result = fuzzySearch(result, searchQuery);
+    if (activeSearch.trim()) {
+      result = fuzzySearch(result, activeSearch);
     }
 
     // 3. Sort by price or rating
@@ -93,7 +84,7 @@ function Shop() {
     }
 
     return result;
-  }, [products, selectedCategory, searchQuery, sortBy]);
+  }, [products, activeCategory, activeSearch, sortBy]);
 
   // Handle clicking the "Add" button directly on a product card
   const handleQuickAdd = (e, product) => {

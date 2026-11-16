@@ -5,7 +5,6 @@ import {
   ArrowLeft,
   CreditCard,
   Banknote,
-  ShieldCheck,
   Building,
   AlertCircle,
 } from 'lucide-react';
