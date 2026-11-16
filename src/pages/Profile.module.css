@@ -1,0 +1,192 @@
+.profilePage {
+  min-height: 100vh;
+  padding-top: var(--navbar-height);
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.profileContainer {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--container-padding) var(--space-4xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.profileHeader {
+  border-bottom: var(--border-grid-light);
+  padding-bottom: var(--space-lg);
+}
+
+.profileTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  letter-spacing: 0.05em;
+  margin: 0;
+  line-height: 0.9;
+}
+
+.cardSection {
+  background: rgba(255, 255, 255, 0.03);
+  border: var(--border-grid-light);
+  border-radius: 6px;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.userAvatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-yellow);
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.userName {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.userEmail {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  opacity: 0.7;
+}
+
+.membershipBadge {
+  display: inline-block;
+  background: rgba(245, 196, 0, 0.15);
+  color: var(--color-yellow);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  width: max-content;
+  margin-top: 4px;
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  border-top: var(--border-grid-light);
+  border-bottom: var(--border-grid-light);
+  padding: var(--space-md) 0;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-yellow);
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+
+.quickActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-white);
+  padding: 10px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.actionBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--color-yellow);
+  color: var(--color-yellow);
+}
+
+.logoutBtn {
+  background: transparent;
+  border: 1px solid rgba(211, 47, 47, 0.4);
+  color: #ff6b6b;
+}
+
+.logoutBtn:hover {
+  background: rgba(211, 47, 47, 0.15);
+  border-color: #ff6b6b;
+  color: #ff8585;
+}
+
+.guestPrompt {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-4xl) var(--container-padding);
+}
+
+.authButtonGroup {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.primaryAuthBtn {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+  padding: 12px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.secondaryAuthBtn {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+  padding: 12px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+}

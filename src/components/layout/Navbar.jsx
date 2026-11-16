@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, ShoppingBag, X, ArrowRight, Menu } from 'lucide-react';
+import { Search, ShoppingBag, X, ArrowRight, Menu, User } from 'lucide-react';
 import { useCart } from '../../context/CartContext.jsx';
+import { useAuth } from '../../context/AuthContext.jsx';
 import { getAllProducts } from '../../services/productService.js';
 import { fuzzySearch } from '../../utils/searchUtils.js';
 import styles from './Navbar.module.css';
 
 function Navbar() {
   const { cartCount } = useCart();
+  const { isAuthenticated, user } = useAuth();
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -81,6 +83,16 @@ function Navbar() {
           >
             {searchOpen ? <X size={20} strokeWidth={1.5} /> : <Search size={20} strokeWidth={1.5} />}
           </button>
+
+          <Link
+            to={isAuthenticated ? '/profile' : '/login'}
+            className={styles.iconButton}
+            aria-label="Member account"
+            title={isAuthenticated ? `Profile (${user?.name})` : 'Login / Sign Up'}
+          >
+            <User size={20} strokeWidth={1.5} />
+          </Link>
+
           <Link to="/cart" className={styles.cartButton} aria-label="Shopping bag">
             <ShoppingBag size={20} strokeWidth={1.5} />
             {cartCount > 0 && (
@@ -130,6 +142,13 @@ function Navbar() {
             onClick={() => setMobileMenuOpen(false)}
           >
             Bag ({cartCount})
+          </Link>
+          <Link
+            to={isAuthenticated ? '/profile' : '/login'}
+            className={styles.mobileNavLink}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            {isAuthenticated ? 'My Profile' : 'Login / Register'}
           </Link>
         </div>
       )}
