@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { Search, Plus } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { getAllProducts, getCategories } from '../services/productService.js';
@@ -8,6 +8,7 @@ import { fuzzySearch } from '../utils/searchUtils.js';
 import styles from './Shop.module.css';
 
 function Shop() {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const urlQuery = searchParams.get('q') || '';
   const urlCategory = searchParams.get('category') || 'all';
@@ -17,6 +18,7 @@ function Shop() {
   const [selectedCategory, setSelectedCategory] = useState(urlCategory);
   const [searchQuery, setSearchQuery] = useState(urlQuery);
   const [sortBy, setSortBy] = useState('default');
+  const [selectedSizes, setSelectedSizes] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -97,8 +99,19 @@ function Shop() {
   const handleQuickAdd = (e, product) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart(product, 1, 'M');
-    toast.success(`Added ${product.title} to bag!`);
+    const chosenSize = selectedSizes[product.id] || 'M';
+    addToCart(product, 1, chosenSize);
+    toast.success(`Added ${product.title} (${chosenSize}) to bag!`);
+  };
+
+  const handleSizeChange = (e, productId) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const newSize = e.target.value;
+    setSelectedSizes((prev) => ({
+      ...prev,
+      [productId]: newSize,
+    }));
   };
 
   return (
@@ -173,10 +186,10 @@ function Shop() {
       ) : (
         <div className={styles.grid}>
           {filteredProducts.map((product) => (
-            <Link
-              to={`/product/${product.id}`}
+            <div
               key={product.id}
               className={styles.card}
+              onClick={() => navigate(`/product/${product.id}`)}
             >
               <div className={styles.imageContainer}>
                 {product.discountPercentage > 10 && (
@@ -203,17 +216,44 @@ function Shop() {
                 <h3 className={styles.productTitle}>{product.title}</h3>
 
                 <div className={styles.priceRow}>
-                  <span className={styles.price}>${product.price}</span>
-                  <button
-                    className={styles.quickAddBtn}
-                    onClick={(e) => handleQuickAdd(e, product)}
+                  <div className={styles.priceGroup}>
+                    <span className={styles.price}>${product.price}</span>
+                    {product.discountPercentage > 10 && (
+                      <span className={styles.originalPrice}>
+                        ${(product.price / (1 - product.discountPercentage / 100)).toFixed(2)}
+                      </span>
+                    )}
+                  </div>
+                  <div
+                    className={styles.quickAddGroup}
+                    onClick={(e) => e.stopPropagation()}
+                    onMouseDown={(e) => e.stopPropagation()}
                   >
-                    <Plus size={14} style={{ display: 'inline', marginRight: 4 }} />
-                    Add
-                  </button>
+                    <select
+                      className={styles.sizeSelect}
+                      value={selectedSizes[product.id] || 'M'}
+                      onChange={(e) => handleSizeChange(e, product.id)}
+                      aria-label="Select size"
+                    >
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                    </select>
+
+                    <button
+                      type="button"
+                      className={styles.quickAddBtn}
+                      onClick={(e) => handleQuickAdd(e, product)}
+                      aria-label="Add to bag"
+                    >
+                      <Plus size={14} style={{ display: 'inline', marginRight: 3 }} />
+                      Add
+                    </button>
+                  </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}

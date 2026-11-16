@@ -143,6 +143,7 @@
   color: inherit;
   transition: background-color var(--transition-base);
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -230,6 +231,14 @@
   align-items: center;
   justify-content: space-between;
   margin-top: var(--space-xs);
+  gap: 8px;
+}
+
+.priceGroup {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .price {
@@ -237,6 +246,45 @@
   font-size: 1.5rem;
   letter-spacing: 0.03em;
   color: var(--color-yellow);
+  line-height: 1;
+}
+
+.originalPrice {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.quickAddGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sizeSelect {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+  padding: 5px 6px;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.sizeSelect:focus,
+.sizeSelect:hover {
+  border-color: var(--color-yellow);
+}
+
+.sizeSelect option {
+  background: #171717;
+  color: #fff;
 }
 
 .quickAddBtn {

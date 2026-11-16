@@ -130,12 +130,27 @@
   display: flex;
   align-items: center;
   gap: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.priceGroup {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
 }
 
 .price {
   font-family: var(--font-display);
   font-size: 2.25rem;
   color: var(--color-yellow);
+}
+
+.originalPrice {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: line-through;
+  font-weight: 500;
 }
 
 .rating {

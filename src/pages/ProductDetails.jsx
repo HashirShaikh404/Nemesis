@@ -136,7 +136,14 @@ function ProductDetails() {
           <h1 className={styles.productName}>{product.title}</h1>
 
           <div className={styles.priceRatingRow}>
-            <span className={styles.price}>${product.price}</span>
+            <div className={styles.priceGroup}>
+              <span className={styles.price}>${product.price}</span>
+              {product.discountPercentage > 10 && (
+                <span className={styles.originalPrice}>
+                  ${(product.price / (1 - product.discountPercentage / 100)).toFixed(2)}
+                </span>
+              )}
+            </div>
             <span className={styles.rating}>★ {product.rating} / 5.0 rating</span>
           </div>
 
