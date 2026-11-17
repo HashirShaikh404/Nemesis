@@ -16,6 +16,7 @@ function Navbar() {
   const [allProducts, setAllProducts] = useState([]);
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
+  const searchBtnRef = useRef(null);
   const navigate = useNavigate();
 
   // Load products once for instant as-you-type fuzzy suggestions
@@ -36,6 +37,25 @@ function Navbar() {
       inputRef.current?.focus();
     }
   }, [searchOpen]);
+
+  // Close search bar if clicking outside when nothing has been typed
+  useEffect(() => {
+    if (!searchOpen) return;
+
+    function handleClickOutside(event) {
+      const isInsideDropdown = dropdownRef.current && dropdownRef.current.contains(event.target);
+      const isSearchToggleBtn = searchBtnRef.current && searchBtnRef.current.contains(event.target);
+
+      if (!isInsideDropdown && !isSearchToggleBtn && !query.trim()) {
+        setSearchOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [searchOpen, query]);
 
   // Real-time suggestions ranked by fuzzy score
   const suggestions = useMemo(() => {
@@ -74,6 +94,7 @@ function Navbar() {
 
         <div className={styles.navIcons}>
           <button
+            ref={searchBtnRef}
             className={styles.iconButton}
             aria-label="Toggle search"
             onClick={() => {
@@ -161,7 +182,7 @@ function Navbar() {
             <input
               ref={inputRef}
               type="text"
-              placeholder="Search drops, jackets, accessories... (press Enter)"
+              placeholder="Search drops, jackets, accessories..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className={styles.searchFormInput}
