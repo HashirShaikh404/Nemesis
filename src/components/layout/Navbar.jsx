@@ -88,7 +88,7 @@ function Navbar() {
         <div className={styles.navLinks}>
           <Link to="/shop" className={styles.navLink}>Shop</Link>
           <Link to="/shop?category=mens-shirts" className={styles.navLink}>Drops</Link>
-          <Link to="/shop?category=womens-dresses" className={styles.navLink}>Lookbook</Link>
+          <Link to="/lookbook" className={styles.navLink}>Lookbook</Link>
           <a href="#about-nemesis" className={styles.navLink}>About</a>
         </div>
 
@@ -151,7 +151,7 @@ function Navbar() {
             Drops
           </Link>
           <Link
-            to="/shop?category=womens-dresses"
+            to="/lookbook"
             className={styles.mobileNavLink}
             onClick={() => setMobileMenuOpen(false)}
           >
