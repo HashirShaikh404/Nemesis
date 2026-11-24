@@ -93,7 +93,7 @@ function Lookbook() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveSlideIndex((prev) => (prev + 1) % SLIDESHOW_IMAGES.length);
-    }, 500);
+    }, 400);
 
     return () => clearInterval(interval);
   }, []);
