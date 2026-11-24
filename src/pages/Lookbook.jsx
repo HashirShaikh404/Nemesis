@@ -93,7 +93,7 @@ function Lookbook() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveSlideIndex((prev) => (prev + 1) % SLIDESHOW_IMAGES.length);
-    }, 1000);
+    }, 500);
 
     return () => clearInterval(interval);
   }, []);
@@ -118,13 +118,12 @@ function Lookbook() {
           {LOOKBOOK_ITEMS.map((item, index) => (
             <div
               key={item.id}
-              className={`${styles.lookCard} ${
-                index === 0
-                  ? styles.cardHero
-                  : index % 2 === 1
+              className={`${styles.lookCard} ${index === 0
+                ? styles.cardHero
+                : index % 2 === 1
                   ? styles.cardOffset
                   : ''
-              }`}
+                }`}
             >
               <div className={styles.imageFrame}>
                 <span className={styles.lookBadge}>
