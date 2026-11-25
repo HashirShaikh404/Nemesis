@@ -132,6 +132,7 @@ function Home() {
           <div className={styles.iconBox}>
             <span className={styles.editorialLabel}>Y2K</span>
           </div>
+          
         </div>
       </section>
 
@@ -150,6 +151,7 @@ function Home() {
           {/* Block 1: Lead Editorial Banner */}
           <div className={`${styles.editorialCard} ${styles.cardLarge}`}>
             <div className={styles.cardHeader}>
+
               <span className={styles.cardTag}>COLLECTION 001</span>
               <span className={styles.cardStatus}><Sparkles size={14} /> LIVE NOW</span>
             </div>
